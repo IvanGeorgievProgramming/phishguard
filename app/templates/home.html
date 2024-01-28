@@ -1,0 +1,197 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- * Header * -->
+
+    <header class="header">
+        <div class="container">
+
+            <div class="logo-title-group">
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img src="../static/images/logo.png" width="205" height="40" alt="Digitalmedia home">
+                </a>
+                <a href="{{ url_for('home') }}">
+                    <h1>PHISHGUARD</h1>
+                </a>
+            </div>
+
+            <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+                    <li>
+                        <a href="{{ url_for('home') }}" class="navbar-link">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#how_it_works" class="navbar-link">How it Works</a>
+                    </li>
+
+                    <li>
+                        <a href="#phishing_features" class="navbar-link">Phishing Features</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="flex-spacer"></div>
+
+            <button class="nav-open-btn" aria-label="toggle menu" data-nav-toggle-btn>
+                <ion-icon name="menu-outline" aria-hidden="true" class="menu-icon"></ion-icon>
+                <ion-icon name="close-outline" aria-hidden="true" class="close-icon"></ion-icon>
+            </button>
+
+            <div class="overlay" data-overlay></div>
+
+        </div>
+    </header>
+
+    <main>
+        <article>
+
+            <!-- * Hero section * -->
+
+            <section class="section hero-section" aria-label="hero-section">
+                <div class="container">
+
+                    <div class="hero-section-content">
+
+                        <h1 class="h1 title hero-section-title">PHISHGUARD</h1>
+
+                        <p class="hero-section-text">
+                            Empower your online safety with AI-Powered, Reliable Detection. Our advanced Phishing Identification System is designed to guard users against deceptive threats, ensuring your digital environment is secure. 
+                        </p>
+
+                        <form method="post">
+                            <div class="input-wrapper">
+                                <input type="url" name="website_url" placeholder="Enter URL" class="input-field" required>
+                                <button type="submit" class="btn btn-secondary">Analyze Now</button>
+                            </div>
+                            
+                            <div class="options">
+                                <input type="radio" id="complete_site_analysis" name="analysis_option" value="1" class="option">
+                                <label for="complete_site_analysis">Complete Site Analysis</label>
+                                
+                                <input type="radio" id="comprehensive_analysis" name="analysis_option" value="2" class="option" checked>
+                                <label for="comprehensive_analysis">Comprehensive Analysis</label>
+                                
+                                <input type="radio" id="focused_analysis" name="analysis_option" value="3" class="option">
+                                <label for="focused_analysis">Focused Analysis</label>
+                                
+                                <input type="radio" id="quick_analysis" name="analysis_option" value="4" class="option">
+                                <label for="quick_analysis">Quick Analysis</label>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <figure class="hero-section-banner">
+                        <img src="../static/images/internet-banner.png" width="835" height="960" alt="hero-section banner" class="w-100" data-parallax data-parallax-speed="10">
+
+                        <img src="../static/images/legitimate-banner.png" width="120" height="120" alt="Twitter" class="shape shape-2" data-parallax data-parallax-speed="25">
+
+                        <img src="../static/images/phishing-banner.png" width="150" height="150" alt="Instagram" class="shape shape-3" data-parallax data-parallax-speed="40">
+                    </figure>
+
+                </div>
+            </section>
+
+            <!-- * How It Works? section * -->
+
+            <section class="section content-section bg-true text-center" aria-labelledby="content-section-label" id="how_it_works">
+                <div class="container">
+            
+                    <h2 class="h2 title section-title" id="content-section-label">How It Works?</h2>
+            
+                    <p class="section-text">
+                        We begin by extracting the website's source code and analyzing it for phishing indicators with our ML model to assess safety. Below, you'll find options that vary in speed and efficiency, allowing you to choose the best fit for your needs.
+                    </p>
+            
+                    <div class="wrapper">
+                        <figure class="content-section-banner">
+                            <img src="../static/images/legitimate-banner.png" width="734" height="854" loading="lazy" alt="content-section banner" class="w-100">
+                        </figure>
+
+                        <ul class="grid-list">
+                            <li class="content-section-item glowable">
+                                <h3 class="h3 title item-title">Complete Site Analysis</h3>
+                                <p class="item-text">
+                                    Delivers the most thorough safety review by examining the entire website, which takes longer but leaves no stone unturned.
+                                </p>
+                            </li>
+            
+                            <li class="content-section-item glowable">
+                                <h3 class="h3 title item-title">Comprehensive Analysis</h3>
+                                <p class="item-text">
+                                    Offers a detailed scan of the whole site, quicker than a complete analysis but won’t catch content that loads interactively.
+                                </p>
+                            </li>
+            
+                            <li class="content-section-item glowable">
+                                <h3 class="h3 title item-title">Focused Analysis</h3>
+                                <p class="item-text">
+                                    Provides a swift safety snapshot by analyzing the main page and its direct links, focusing on immediate risks with less depth.
+                                </p>
+                            </li>
+            
+                            <li class="content-section-item glowable">
+                                <h3 class="h3 title item-title">Quick Analysis</h3>
+                                <p class="item-text">
+                                    Provides a quick overview by focusing on the main page and immediate links, with a chance of missing deeper issues.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- * Phishing Features section * -->
+
+            <section class="section content-section text-center" aria-labelledby="content-section-label" id="phishing_features">
+                <div class="container">
+            
+                    <h2 class="h2 title section-title" id="content-section-label">Phishing Features</h2>
+            
+                    <p class="section-text">
+                        We utilize many detection functions, categorized into four main areas, to effectively identify phishing threats. Each category targets specific signs of phishing, ensuring comprehensive website analysis.
+                    </p>
+            
+                    <div class="wrapper">
+                        <figure class="content-section-banner">
+                            <img src="../static/images/phishing-banner.png" width="734" height="854" loading="lazy" alt="content-section banner" class="w-100">
+                        </figure>
+                        <ul class="grid-list">
+                            <li class="content-section-item glowable">
+                                <img src="../static/images/phishing-features-url.png" width="100" height="100" alt="Digitalmedia home">
+                                <h3 class="h3 title item-title">URL Features</h3>
+                                <p class="item-text">
+                                    Assesses the website's URL for misleading patterns and signs of phishing attempts.
+                                </p>
+                            </li>
+            
+                            <li class="content-section-item glowable">
+                                <img src="../static/images/phishing-features-behavior.png" width="100" height="100" alt="Digitalmedia home">
+                                <h3 class="h3 title item-title">Behavior Features</h3>
+                                <p class="item-text">
+                                    Identifies deviations in website behavior from norms, suggesting deceptive intent.
+                                </p>
+                            </li>
+            
+                            <li class="content-section-item glowable">
+                                <img src="../static/images/phishing-features-code.png" width="100" height="100" alt="Digitalmedia home">
+                                <h3 class="h3 title item-title">Code Features</h3>
+                                <p class="item-text">
+                                    Scans for malicious scripts and elements in HTML and JavaScript that are typical in phishing.
+                                </p>
+                            </li>
+            
+                            <li class="content-section-item glowable">
+                                <img src="../static/images/phishing-features-domain.png" width="100" height="100" alt="Digitalmedia home">
+                                <h3 class="h3 title item-title">Domain Features</h3>
+                                <p class="item-text">
+                                    Evaluates domain registration, age, and reputation for legitimacy and associated risks.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+{% endblock content %}
