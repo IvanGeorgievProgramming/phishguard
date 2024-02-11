@@ -34,7 +34,51 @@ window.addEventListener("mousemove", event => {
     const movementY = (event.clientY / window.innerHeight) * Number(parallaxElements[i].dataset.parallaxSpeed);
 
     parallaxElements[i].animate({
-      transform: `translate(${movementX}px, ${movementY}px)`
+        transform: `translate(${movementX}px, ${movementY}px)`
     }, { duration: 500, fill: "forwards" });
   }
 })
+
+/* Alerts */
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateAlertPositions(); 
+});
+
+function closeAlert(element) {
+    var alertElement = element.closest('.alert');
+    if (alertElement) {
+        alertElement.style.opacity = '0'; 
+        alertElement.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'opacity') { 
+                alertElement.removeEventListener('transitionend', handler); 
+                alertElement.remove(); 
+                updateAlertPositions(); 
+            }
+        });
+    }
+}
+
+function updateAlertPositions() {
+    const alerts = document.querySelectorAll('.flashes .alert');
+    let currentTop = 10; 
+    alerts.forEach(alert => {
+        alert.style.top = `${currentTop}px`; 
+        const alertHeight = alert.offsetHeight + 10; 
+        currentTop += alertHeight;
+    });
+}
+
+function closeAlertSpecific(button) {
+    var alertElement = button.closest('.alert');
+    if (alertElement) {
+        alertElement.style.opacity = '0';
+        alertElement.addEventListener('transitionend', function handler(e) {
+            if (e.propertyName === 'opacity') {
+                alertElement.removeEventListener('transitionend', handler);
+                alertElement.remove();
+                updateAlertPositions();
+            }
+        });
+    }
+}

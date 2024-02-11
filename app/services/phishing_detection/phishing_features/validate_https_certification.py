@@ -1,5 +1,4 @@
 # 8
-# Possible values: -1, 0, 1
 from urllib.parse import urlparse
 import socket
 import ssl
@@ -19,19 +18,19 @@ def validate_https_certification(url):
         The issuer is extracted from the certificate.\n
         The organization name is extracted from the issuer.\n
         A list of trusted issuers is created.\n
-        If the organization name contains a trusted issuer and the website starts with "https://", -1 is returned.\n
-        If the organization name contains a trusted issuer and the website does not start with "https://", 0 is returned.\n
-        If the organization name does not contain a trusted issuer and the website starts with "https://", 0 is returned.\n
+        If the organization name contains a trusted issuer and the website starts with "https://", 0 is returned.\n
+        If the organization name contains a trusted issuer and the website does not start with "https://", 0.5 is returned.\n
+        If the organization name does not contain a trusted issuer and the website starts with "https://", 0.5 is returned.\n
         If the organization name does not contain a trusted issuer and the website does not start with "https://", 1 is returned.\n
 
     Arguments: 
         url (str): The URL of the website.
 
     Returns: 
-        (int): Either -1, 0 or 1
+        (int): Either 0, 0.5 or 1
 
     Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0 is returned.
+        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
     """
     try:
         is_https = url.startswith("https://")
@@ -51,13 +50,13 @@ def validate_https_certification(url):
         trusted_issuers = ["GeoTrust", "GoDaddy", "Network Solutions", "Thawte", "Comodo", "Doster", "VeriSign", "Google"]
         
         if any(trusted_issuer in issued_by for trusted_issuer in trusted_issuers) and is_https:
-            return -1
+            return 0
         elif any(trusted_issuer in issued_by for trusted_issuer in trusted_issuers) and not is_https:
-            return 0
+            return 0.5
         elif not any(trusted_issuer in issued_by for trusted_issuer in trusted_issuers) and is_https:
-            return 0
+            return 0.5
         else:
             return 1
     except Exception as e:
         print(f"Error in validate_https_certification: {e}")
-        return 0
+        return 0.5

@@ -23,7 +23,7 @@ def create_analysis_summary(data):
         phishing_status = data["phishing_status"]
         analysis_summary = ""
 
-        if phishing_status == -1:
+        if phishing_status == 0:
             analysis_summary = "Our analysis indicates that this website is likely safe, with no immediate phishing threats detected. However, continue to browse with caution and stay vigilant."
         elif phishing_status == 1:
             analysis_summary = "Our analysis suggests that this website may pose a potential phishing threat. Please proceed with caution and consider the risks before sharing personal information."

@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for, redirect, abort
+from flask import render_template, request, url_for, redirect, abort, flash
 import json
 import os
 import time
@@ -10,6 +10,8 @@ from app.services.data_management.insert_phishing_features_data import insert_ph
 from app.services.data_management.insert_phishing_status_data import insert_phishing_status_data
 from app.services.email_management.send_email import send_email
 from app.utils.url_utils import generate_route_name
+from app.utils.validate_and_check_email import validate_and_check_email
+from app.utils.validate_and_check_website_url import validate_and_check_website_url
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/home", methods=["GET", "POST"])
@@ -19,14 +21,12 @@ def home():
         The home route.
 
     Description: 
-        If the request method is POST, get the website url and the analysis option from the form.\n
-        Generate a route name for the website url.\n
-        Create a json file for the route name.\n
-        Insert the website analysis data into the json file.\n
-        Insert the phishing features data into the json file.\n
-        Insert the phishing status data into the json file.\n
-        Add the route name, the website url and the file name to the temporary_routes dictionary.\n
-        Redirect the user to the result route.\n
+        If the request method is POST, get the website URL and analysis option from the form.\n
+        If the website URL is not valid, render the home template.\n
+        Generate a route name for the website URL.\n
+        Create a json file for the website URL.\n
+        Insert the website analysis data, phishing features data, and phishing status data into the database.\n
+        Add the route info to the temporary_routes dictionary.\n
         If the request method is GET, render the home template.\n
 
     Arguments: 
@@ -39,7 +39,9 @@ def home():
     if request.method == "POST":
         website_url = request.form.get("website_url")
         option = request.form.get("analysis_option", "2")
-        print(website_url, option)
+        
+        if not validate_and_check_website_url(website_url):
+            return render_template("home.html")
         
         encoded_route_name = generate_route_name(website_url)
 
@@ -66,11 +68,13 @@ def result(encoded_route_name):
 
     Description: 
         Get the route info from the temporary_routes dictionary.\n
-        If the route info does not exist or the route has expired, abort the request.\n
-        Get the data from the json file.\n
+        If the route info does not exist or the route info has expired, abort with a 404 error.\n
+        Load the website data from the json file.\n
         If the request method is POST, get the user email from the form.\n
-        If the user email exists, send the email to the user.\n
-        Render the home template.\n
+        If the user email is not valid, render the result template.\n
+        Send the email to the user.\n
+        If the email is sent successfully, flash a success message and redirect the user to the home route.\n
+        If the email is not sent successfully, flash an error message and render the result template.\n
         If the request method is GET, render the result template.\n
 
     Arguments: 
@@ -85,21 +89,30 @@ def result(encoded_route_name):
     if not route_info or time.time() > route_info["expiry"]:
         abort(404)
 
-    json_file_path = os.path.join("data", f"{encoded_route_name}.json")
-    with open(json_file_path, "r") as file:
-        data = json.load(file)
+    try:
+        json_file_path = os.path.join("data", f"{encoded_route_name}.json")
+        with open(json_file_path, "r") as file:
+            data = json.load(file)
+
+        web_url = data["website_analysis"]["website_info"]["url"]
+        web_title = data["website_analysis"]["website_info"]["title"]
+        web_phishing_status = data["phishing_status"]
+    except Exception as e:
+        flash("Failed to load the website data.", "error")
+        return redirect(url_for("home"))
 
     if request.method == "POST":
         user_email = request.form.get("user_email")
-        if user_email:
-            try:
-                send_email(user_email, data)
-                return render_template("home.html", email=user_email)
-            except Exception as e:
-                return render_template("result.html", error=str(e))
 
-    web_url = data["website_analysis"]["website_info"]["url"]
-    web_title = data["website_analysis"]["website_info"]["title"]
-    web_phishing_status = data["phishing_status"]
+        if not validate_and_check_email(user_email):
+            render_template("result.html", url=route_info["url"], data=data, web_url=web_url, web_title=web_title, web_phishing_status=web_phishing_status)
+        
+        try:
+            send_email(user_email, data)
+            flash("Email sent successfully!", "success")
+            return redirect(url_for("home"))
+        except Exception as e:
+            flash("Failed to send the email. Please try again later.", "error")
+            render_template("result.html", url=route_info["url"], data=data, web_url=web_url, web_title=web_title, web_phishing_status=web_phishing_status)
 
     return render_template("result.html", url=route_info["url"], data=data, web_url=web_url, web_title=web_title, web_phishing_status=web_phishing_status)

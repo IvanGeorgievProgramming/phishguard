@@ -37,7 +37,7 @@ def create_legitimate_feature_messages(data):
             "https_token_in_domain": "The website's domain does not misleadingly include 'HTTPS' in the domain part, avoiding confusion with secure protocols.",
             "request_url_external_objects": "A small percentage of external objects are loaded from different domains, indicating a legitimate website.",
             "url_of_anchor_domain_match": "Most anchor elements link to webpages within the same domain, suggesting a legitimate site.",
-            "meta_script_link_tag_links": "A low percentage of links in <Meta>, <Script>, and <Link> tags are external, typical of legitimate websites.",
+            "meta_script_link_tag_links": "A low percentage of links in <Script>, and <Link> tags are external, typical of legitimate websites.",
             "server_form_handler_integrity": "SFHs properly specify an action within the same domain, which is expected in legitimate websites.",
             "abnormal_url_whois": "The presence of the host name within the URL typically indicates a legitimate website, reflecting its identity clearly.",
             "website_redirection_count": "Websites redirected once or not at all are generally operating within the norms of legitimate online behavior.",
@@ -53,7 +53,7 @@ def create_legitimate_feature_messages(data):
         features = data["phishing_features"]
 
         for feature in features:
-            if features[feature] == -1:
+            if features[feature] == 0:
                 legitimate_feature_messages.append(all_legitimate_features_messages[feature])
 
         return legitimate_feature_messages

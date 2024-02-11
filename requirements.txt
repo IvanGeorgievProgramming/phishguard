@@ -1,5 +1,6 @@
 APScheduler==3.7.0
 beautifulsoup4==4.12.2
+email-validator==2.0.0.post2
 Flask==3.0.0
 lxml==5.1.0
 numpy==1.26.3

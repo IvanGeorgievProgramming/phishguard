@@ -1,5 +1,4 @@
 # 3
-# Possible values: -1, 1
 from urllib.parse import urlparse
 
 def assess_url_shortening_service(url):
@@ -11,16 +10,16 @@ def assess_url_shortening_service(url):
         The domain is extracted from the URL.\n
         A list of known URL shortening services is created.\n
         If the domain contains a URL shortening service, 1 is returned.\n
-        If the domain does not contain a URL shortening service, -1 is returned.\n
+        If the domain does not contain a URL shortening service, 0 is returned.\n
 
     Arguments: 
         url (str): The URL of the website.
 
     Returns: 
-        (int): Either 1 or -1
+        (int): Either 1 or 0
 
     Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0 is returned.
+        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
     """
     try:
         parsed_url = urlparse(url)
@@ -40,7 +39,7 @@ def assess_url_shortening_service(url):
         if any(service in domain for service in shortening_services):
             return 1
         else:
-            return -1
+            return 0
     except Exception as e:
         print(f"Error in assess_url_shortening_service: {e}")
-        return 0
+        return 0.5

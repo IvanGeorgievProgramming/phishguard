@@ -29,6 +29,30 @@
 
     <body>
 
+        <!-- * Alerts * -->
+            
+        {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="alert alert-{{ category }}">
+                            <span class="icon">
+                                {% if category == 'error' %}
+                                    <ion-icon name="alert-circle-outline"></ion-icon>
+                                {% elif category == 'success' %}
+                                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                {% endif %}
+                            </span>
+                            <span class="message">{{ message }}</span>
+                            <button onclick="closeAlertSpecific(this); event.stopPropagation();" class="close-button">
+                                <ion-icon name="close-outline" aria-hidden="true" class="close-icon"></ion-icon>
+                            </button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
         <!-- * Content * -->
 
         {% block content %}

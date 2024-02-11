@@ -1,5 +1,4 @@
 # 11
-# Possible values: -1, 1
 import socket
 from urllib.parse import urlparse
 
@@ -13,17 +12,17 @@ def assess_port_status(url):
         For each port, a connection is established to the given host and port.\n
         If the connection is successful and the status is not as expected, 1 is returned.\n
         If the connection is unsuccessful and the status is not as expected, 1 is returned.\n
-        If the connection is successful and the status is as expected, -1 is returned.\n
-        If the connection is unsuccessful and the status is as expected, -1 is returned.\n
+        If the connection is successful and the status is as expected, 0 is returned.\n
+        If the connection is unsuccessful and the status is as expected, 0 is returned.\n
 
     Arguments: 
         url (str): The URL of the website.
 
     Returns: 
-        (int): Either -1 or 1
+        (int): Either 0 or 1
 
     Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0 is returned.
+        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
     """
     try:
         domain = urlparse(url).netloc
@@ -45,10 +44,10 @@ def assess_port_status(url):
             if is_port_open(domain, port) != (status == "open"):
                 return 1
 
-        return -1
+        return 0
     except Exception as e:
         print(f"Error in assess_port_status: {e}")
-        return 0
+        return 0.5
 
 def is_port_open(host, port):
     """

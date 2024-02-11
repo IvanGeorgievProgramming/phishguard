@@ -1,5 +1,4 @@
 # 1
-# Possible values: -1, 1
 import re
 
 def check_ip_address_in_domain(url):
@@ -11,16 +10,16 @@ def check_ip_address_in_domain(url):
         Creates regular expressions for decimal, hexadecimal and octal IP addresses.\n
         Creates an IP address pattern using the regular expressions.\n
         If the URL contains an IP address in the domain, 1 is returned.\n
-        If the URL does not contain an IP address in the domain, -1 is returned.\n
+        If the URL does not contain an IP address in the domain, 0 is returned.\n
 
     Arguments: 
         url (str): The URL of the website.
 
     Returns: 
-        (int): Either 1 or -1
+        (int): Either 1 or 0
 
     Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0 is returned.
+        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
     """
     try:
         decimal_ip = r"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
@@ -43,7 +42,7 @@ def check_ip_address_in_domain(url):
         if re.search(ip_pattern, url):
             return 1
         else:
-            return -1
+            return 0
     except Exception as e:
         print(f"Error in check_ip_address_in_domain: {e}")
-        return 0
+        return 0.5

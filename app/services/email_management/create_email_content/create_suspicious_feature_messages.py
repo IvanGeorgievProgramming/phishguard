@@ -36,7 +36,7 @@ def create_suspicious_feature_messages(data):
             "https_token_in_domain": "The inclusion of 'HTTPS' in the domain part can be a deceptive tactic, although it's not definitive evidence of phishing.",
             "request_url_external_objects": "A significant number of external objects hosted on other domains could be a suspicious sign and merits caution.",
             "url_of_anchor_domain_match": "A considerable number of anchor elements linking to external domains or not linking to any webpage could indicate suspicious activity.",
-            "meta_script_link_tag_links": "A moderate percentage of links in <Meta>, <Script>, and <Link> tags pointing to external resources may indicate cautious or suspicious design.",
+            "meta_script_link_tag_links": "A moderate percentage of links in <Script> and <Link> tags pointing to external resources may indicate cautious or suspicious design.",
             "server_form_handler_integrity": "SFHs referring to a different domain than the webpage's can be suspicious, as legitimate sites rarely process information externally.",
             "abnormal_url_whois": "The presence of the host name within the URL is generally expected for legitimate sites, reflecting their identity clearly.",
             "website_redirection_count": "A website being redirected 2 to 3 times may raise suspicions, as it's uncommon but not definitive evidence of phishing.",
@@ -52,7 +52,7 @@ def create_suspicious_feature_messages(data):
         features = data["phishing_features"]
 
         for feature in features:
-            if features[feature] == 0:
+            if features[feature] == 0.5:
                 suspicious_feature_messages.append(all_suspicious_features_messages[feature])
 
         return suspicious_feature_messages

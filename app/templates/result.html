@@ -51,7 +51,7 @@
                 <div class="container">
 
                     <div class="hero-section-content">
-                        {% if web_phishing_status == -1 %}
+                        {% if web_phishing_status == 0 %}
                             <h1 class="h1 result title hero-section-title">Likely Safe:</h1>
                             <h1 class="h1 result title hero-section-title">No Immediate Threats Detected</h1>
                             <p class="hero-section-text">Our analysis indicates that this website is likely safe, with no immediate phishing threats detected. However, continue to browse with caution and stay vigilant.</p>
@@ -69,7 +69,7 @@
                         </form>
                     </div>
 
-                    {% if web_phishing_status == -1 %}
+                    {% if web_phishing_status == 0 %}
                         <figure class="hero-section-banner">
                             <img src="../static/images/legitimate-banner.png" width="835" height="960" alt="hero-section banner" class="w-100" data-parallax data-parallax-speed="10">
 
