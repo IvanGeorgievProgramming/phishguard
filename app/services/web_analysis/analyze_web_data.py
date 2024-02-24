@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 
 from app.services.web_analysis.setup_driver import setup_driver
-from app.services.web_analysis.extract_source_codes.extract_html_source_codes import extract_html_source_codes
-from app.services.web_analysis.extract_source_codes.extract_javascript_source_codes import extract_javascript_source_codes
+from app.services.web_analysis.extract_source_codes.extract_html.extract_html_source_codes import extract_html_source_codes
+from app.services.web_analysis.extract_source_codes.extract_javascript.extract_javascript_source_codes import extract_javascript_source_codes
 from app.services.web_analysis.website_info.find_favicon import find_favicon
 from app.services.web_analysis.website_info.count_redirections import count_redirections
 from app.services.web_analysis.website_content_analysis.count_img_links import count_img_links
@@ -18,32 +18,6 @@ from app.services.web_analysis.website_security_analysis.set_is_right_click_disa
 from app.services.web_analysis.website_security_analysis.set_is_popup_asking_personal_info import set_is_popup_asking_personal_info
 
 def analyze_web_data(data, url, option):
-    """
-    Summary: 
-        Analyze the website data of the website and add analysis to the data dictionary.
-
-    Description: 
-        Setup the Chrome driver.\n
-        Get the original soup of the website.\n
-        Get the website info of the website.\n
-        Add the website info to the data dictionary.\n
-        Get the website content analysis of the website.\n
-        Add the website content analysis to the data dictionary.\n
-        Get the website security analysis of the website.\n
-        Add the website security analysis to the data dictionary.\n
-        Return the data dictionary.\n
-
-    Arguments: 
-        data (dict): The data dictionary.
-        url (str): The URL of the website.
-        option (int): The option of the website source code extraction.
-
-    Returns: 
-        data (dict): The data dictionary.
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and None is returned.
-    """
     try:
         with setup_driver() as driver:
             driver.get(url)

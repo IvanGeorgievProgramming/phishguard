@@ -1,6 +1,6 @@
 FROM python:3.10 as base
 
-WORKDIR /phishing_detection_app
+WORKDIR /phishguard
 
 RUN apt-get update && apt-get install -y \
     wget \
@@ -53,9 +53,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 RUN useradd -m app_user
-
-RUN mkdir -p data/phishing_features_data data/web_extracted_data && \
-    chown -R app_user:app_user data
+RUN chown -R app_user:app_user /phishguard
 
 USER app_user
 

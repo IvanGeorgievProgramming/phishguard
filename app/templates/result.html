@@ -54,19 +54,21 @@
                         {% if web_phishing_status == 0 %}
                             <h1 class="h1 result title hero-section-title">Likely Safe:</h1>
                             <h1 class="h1 result title hero-section-title">No Immediate Threats Detected</h1>
-                            <p class="hero-section-text">Our analysis indicates that this website is likely safe, with no immediate phishing threats detected. However, continue to browse with caution and stay vigilant.</p>
+                            <p class="hero-section-text">The analysis indicates that this website is likely safe, with no immediate phishing threats detected. However, it is advised to continue browsing with caution and remain vigilant.</p>
                         {% elif web_phishing_status == 1 %}
                             <h1 class="h1 result title hero-section-title">Caution:</h1>
                             <h1 class="h1 result title hero-section-title">Potential Phishing Threat Detected</h1>
-                            <p class="hero-section-text">Our analysis suggests that this website may pose a potential phishing threat. Please proceed with caution and consider the risks before sharing personal information.</p>
+                            <p class="hero-section-text">The analysis suggests that this website may pose a potential phishing threat. It is recommended to proceed with caution and carefully consider the risks before sharing personal information.</p>
                         {% endif %}
 
-                        <form method="post">
-                            <div class="input-wrapper">
-                                <input type="email" name="user_email" placeholder="Enter email" class="input-field" required>
-                                <button type="submit" class="btn btn-secondary">Get report</button>
-                            </div>
-                        </form>
+                        {% if has_valid_email == True %}
+                            <form method="post">
+                                <div class="input-wrapper">
+                                    <input type="email" name="user_email" placeholder="Enter email" class="input-field" required>
+                                    <button type="submit" class="btn btn-secondary">Get report</button>
+                                </div>
+                            </form>
+                        {% endif %}
                     </div>
 
                     {% if web_phishing_status == 0 %}
@@ -98,7 +100,7 @@
                     <h2 class="h2 title section-title" id="site-preview-section-label">Secure Preview</h2>
             
                     <p class="section-text">
-                        Explore the website safely through our Secure Preview window below. This feature allows you to view the site without direct exposure, providing an additional layer of protection against potential online threats.
+                        Explore the website safely through the Secure Preview window below. This feature enables viewing the site without direct exposure, offering an additional layer of protection against potential online threats.
                     </p>
             
                     <div class="iframe-container">

@@ -1,6 +1,9 @@
 from dotenv import load_dotenv
 
-# Load the environment variables from the .env file.
+from env_assurance.ensure_environment_setup import ensure_environment_setup
+
+# Load the environment variables from the .env file after ensuring it's corrected
+ensure_environment_setup()
 load_dotenv()
 
 # Import the app variable from the app package.

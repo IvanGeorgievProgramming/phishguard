@@ -1,28 +1,14 @@
 # 7
 import tldextract
+from flask import current_app
 
 def count_subdomains_in_url(url):
-    """
-    Summary: 
-        Counts the number of subdomains in the URL.
-
-    Description: 
-        The URL is extracted using tldextract.
-        If the URL has a subdomain and the subdomain is not "www", the number of subdomains is counted.\n
-        If the URL has no subdomain or the subdomain is "www", the number of subdomains is 0.\n
-        If the number of subdomains is less than or equal to 1, 0 is returned.\n
-        If the number of subdomains is equal to 2, 0.5 is returned.\n
-        If the number of subdomains is greater than 2, 1 is returned.\n
-
-    Arguments: 
-        url (str): The URL of the website.
-
-    Returns: 
-        (int): Either 0, 0.5 or 1
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
-    """
+    legitimate_status = current_app.config["LEGITIMATE_STATUS"]
+    suspicious_status = current_app.config["SUSPICIOUS_STATUS"]
+    phishing_status = current_app.config["PHISHING_STATUS"]
+    subdomain_count_legitimate_max = current_app.config["SUBDOMAIN_COUNT_LEGITIMATE_MAX"]
+    subdomain_count_suspicious = current_app.config["SUBDOMAIN_COUNT_SUSPICIOUS"]
+    
     try:
         extracted_url = tldextract.extract(url)
         subdomain = extracted_url.subdomain
@@ -32,12 +18,12 @@ def count_subdomains_in_url(url):
         else:
             subdomain_count = 0
         
-        if subdomain_count <= 1:
-            return 0
-        elif subdomain_count == 2:
-            return 0.5
+        if subdomain_count <= subdomain_count_legitimate_max:
+            return legitimate_status
+        elif subdomain_count == subdomain_count_suspicious:
+            return suspicious_status
         else:
-            return 1
+            return phishing_status
     except Exception as e:
         print(f"Error in count_subdomains_in_url: {e}")
         return 0.5

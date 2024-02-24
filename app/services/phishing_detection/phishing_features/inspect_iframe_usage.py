@@ -1,28 +1,18 @@
 # 22
+from flask import current_app
+
 def inspect_iframe_usage(iframe_hidden_count, iframe_visible_count):
-    """
-    Summary: 
-        Inspect if the website uses iframes.
-
-    Description: 
-        If the iframe_hidden_count or the iframe_visible_count is greater than 0, 1 is returned.\n
-        If there are no iframes, 0 is returned.\n
-
-    Arguments: 
-        iframe_hidden_count (int): The number of hidden iframes.
-        iframe_visible_count (int): The number of visible iframes.
-
-    Returns: 
-        (int): Either 0 or 1
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
-    """
+    legitimate_status = current_app.config["LEGITIMATE_STATUS"]
+    suspicious_status = current_app.config["SUSPICIOUS_STATUS"]
+    phishing_status = current_app.config["PHISHING_STATUS"]
+    
     try:
-        if iframe_hidden_count > 0 or iframe_visible_count > 0:
-            return 1
+        if iframe_hidden_count > 0:
+            return phishing_status
+        elif iframe_visible_count > 0:
+            return suspicious_status
         else:
-            return 0
+            return legitimate_status
     except Exception as e:
         print(f"Error in inspect_iframe_usage: {e}")
-        return 0.5
+        return suspicious_status

@@ -4,23 +4,6 @@ from urllib.parse import urlparse
 from app.services.web_analysis.setup_driver import setup_driver
 
 def validate_and_check_website_url(website_url):
-    """
-    Summary:
-        Validate and check the website URL.
-
-    Description:
-        If the website URL is empty, flash an error message and return False.\n
-        If the website URL is not valid, flash an error message and return False.\n
-        If the website URL is valid, check if the website is accessible.\n
-        If the website is not accessible, flash an error message and return False.\n
-        If the website is accessible, return True.\n
-
-    Arguments:
-        website_url (str): The website URL.
-
-    Returns:
-        (bool): Either True or False.
-    """
     if not website_url:
         flash("Website URL is required.", "error")
         return False

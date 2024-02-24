@@ -25,25 +25,6 @@ from app.services.phishing_detection.phishing_features.check_dns_record_presence
 from app.services.phishing_detection.phishing_features.analyze_statistical_report_ranking import analyze_statistical_report_ranking
 
 def detect_phishing_features(data):
-    """
-    Summary: 
-        Detects the phishing features of the website and adds them to the data dictionary.
-
-    Description: 
-        Extracts the required data from the data dictionary.\n
-        Calls the functions to detect the phishing features.\n
-        Adds the detected phishing features to the data dictionary.\n
-        Returns the data dictionary.\n
-
-    Arguments: 
-        data (dict): The dictionary containing the data of the website.
-
-    Returns: 
-        data (dict): The dictionary containing the data of the website analysis with the phishing features.
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and None is returned.
-    """
     try:
         url = data["website_analysis"]["website_info"]["url"]
         favicon = data["website_analysis"]["website_info"]["favicon"]

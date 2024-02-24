@@ -1,26 +1,12 @@
 # 3
 from urllib.parse import urlparse
+from flask import current_app
 
 def assess_url_shortening_service(url):
-    """
-    Summary: 
-        Assess if the URL is a shortened URL.
-
-    Description: 
-        The domain is extracted from the URL.\n
-        A list of known URL shortening services is created.\n
-        If the domain contains a URL shortening service, 1 is returned.\n
-        If the domain does not contain a URL shortening service, 0 is returned.\n
-
-    Arguments: 
-        url (str): The URL of the website.
-
-    Returns: 
-        (int): Either 1 or 0
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
-    """
+    legitimate_status = current_app.config["LEGITIMATE_STATUS"]
+    suspicious_status = current_app.config["SUSPICIOUS_STATUS"]
+    phishing_status = current_app.config["PHISHING_STATUS"]
+    
     try:
         parsed_url = urlparse(url)
         domain = parsed_url.netloc.lower()
@@ -37,9 +23,9 @@ def assess_url_shortening_service(url):
         ]
 
         if any(service in domain for service in shortening_services):
-            return 1
+            return phishing_status
         else:
-            return 0
+            return legitimate_status
     except Exception as e:
         print(f"Error in assess_url_shortening_service: {e}")
-        return 0.5
+        return suspicious_status

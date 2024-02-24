@@ -1,22 +1,7 @@
 import numpy as np
+from flask import current_app
 
 def compute_hypothesis(x):
-    """
-    Summary: 
-        Computes the hypothesis.
-
-    Description: 
-        Computes the hypothesis using the weights and bias from the trained model.
-
-    Arguments: 
-        phishing_features_array (list): The phishing features array.
-
-    Returns: 
-        phishing_status (int): The phishing status.
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
-    """
     try:
         w = np.load("app/services/ml_model/w.npy")
         b = np.load("app/services/ml_model/b.npy")
@@ -26,4 +11,5 @@ def compute_hypothesis(x):
         return prediction
     except Exception as e:
         print("Error computing hypothesis: " + str(e))
-        return 0.5
+        suspicious_status = current_app.config["SUSPICIOUS_STATUS"]
+        return suspicious_status

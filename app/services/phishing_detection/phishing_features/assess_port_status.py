@@ -1,29 +1,13 @@
 # 11
 import socket
 from urllib.parse import urlparse
+from flask import current_app
 
 def assess_port_status(url):
-    """
-    Summary: 
-        Assess the status of some important ports.
-
-    Description: 
-        A dictionary containing the important ports and their expected status is created.\n
-        For each port, a connection is established to the given host and port.\n
-        If the connection is successful and the status is not as expected, 1 is returned.\n
-        If the connection is unsuccessful and the status is not as expected, 1 is returned.\n
-        If the connection is successful and the status is as expected, 0 is returned.\n
-        If the connection is unsuccessful and the status is as expected, 0 is returned.\n
-
-    Arguments: 
-        url (str): The URL of the website.
-
-    Returns: 
-        (int): Either 0 or 1
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
-    """
+    legitimate_status = current_app.config["LEGITIMATE_STATUS"]
+    suspicious_status = current_app.config["SUSPICIOUS_STATUS"]
+    phishing_status = current_app.config["PHISHING_STATUS"]
+    
     try:
         domain = urlparse(url).netloc
 
@@ -42,36 +26,19 @@ def assess_port_status(url):
 
         for port, status in important_ports.items():
             if is_port_open(domain, port) != (status == "open"):
-                return 1
+                return phishing_status
 
-        return 0
+        return legitimate_status
     except Exception as e:
         print(f"Error in assess_port_status: {e}")
-        return 0.5
+        return suspicious_status
 
 def is_port_open(host, port):
-    """
-    Summary: 
-        Check if a port is open or not.
+    socket_connection_timeout = current_app.config["SOCKET_CONNECTION_TIMEOUT"]
 
-    Description: 
-        A socket is created and a connection to the given host and port is established.
-        If the connection is successful, True is returned.
-        If the connection is unsuccessful, False is returned.
-
-    Arguments: 
-        host (str): The host to connect to.
-        port (int): The port to connect to.
-
-    Returns: 
-        (bool): True if the connection was successful, False otherwise.
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and False is returned.
-    """
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.settimeout(1)
+            sock.settimeout(socket_connection_timeout)
             if sock.connect_ex((host, port)) == 0:
                 return True
             else:

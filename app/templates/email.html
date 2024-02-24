@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Email Template</title>
+    </head>
+    <body style="background-color: hsla(222, 44%, 13%, 1); color: hsla(0, 0%, 100%, 0.6); font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 1.8; padding: 20px; border-radius: 10px;">
+        <main style="padding: 16px; padding-left: 20px; padding-right: 20px;">
+            <h2 style="color: hsla(0, 0%, 100%, 1); text-align: center;">PHISHGUARD Analysis Report</h2>
+
+            <p style="color: hsla(0, 0%, 100%, 1);">Hello,</p>
+            <p style="color: hsla(0, 0%, 100%, 1);">Thank you for using PHISHGUARD to evaluate the safety of <b>{{ url }}</b> (<b>{{ title }}</b>).</p>
+
+            <p style="color: hsla(0, 0%, 100%, 1);">Following our analysis on <b>{{ date }}</b>, here are the findings:</p>
+            
+            <h3 style="color: hsla(0, 0%, 100%, 1);">Analysis Summary:</h3>
+            {% if phishing_status == 0 %}
+                <p style="color: hsla(0, 0%, 100%, 0.6);">The analysis indicates that this website is <b style='color: hsla(202, 100%, 50%, 1);'>likely safe</b>, with no immediate phishing threats detected. However, continue to browse with caution and stay vigilant.</p>
+            {% elif phishing_status == 1 %}
+                <p style="color: hsla(0, 0%, 100%, 0.6);">The analysis suggests that this website may pose a <b style='color: hsla(202, 100%, 50%, 1);'>potential phishing threat</b>. Please proceed with caution and consider the risks before sharing personal information.</p>
+            {% endif %}
+            
+            <h3 style="color: hsla(0, 0%, 100%, 1);">Detailed Analysis Findings:</h3>
+            <h4 style="color: hsla(0, 0%, 100%, 1);">Features Indicating Potential Phishing:</h4>
+            <ul style="color: hsla(0, 0%, 100%, 0.6);">
+                {% for message in phishing_feature_messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            
+            <h4 style="color: hsla(0, 0%, 100%, 1);">Suspicious Features:</h4>
+            <ul style="color: hsla(0, 0%, 100%, 0.6);">
+                {% for message in suspicious_feature_messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            
+            <h4 style="color: hsla(0, 0%, 100%, 1);">Features Indicating Legitimacy:</h4>
+            <ul style="color: hsla(0, 0%, 100%, 0.6);">
+                {% for message in legitimate_feature_messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            
+            <h3 style="color: hsla(0, 0%, 100%, 1);">Disclaimer:</h3>
+            <p style="color: hsla(0, 0%, 100%, 0.6);">This analysis is based on current algorithms and data, aiming to assess potential risks. It doesn’t guarantee absolute safety or risk. 
+
+            <br>
+
+            <p style="color: hsla(0, 0%, 100%, 1);">Thank you for trusting PHISHGUARD with your online safety concerns. Your vigilance is your first line of defense in maintaining online security.</p>
+
+            <p style="color: hsla(0, 0%, 100%, 1);">Sincerely,</p>
+            <p style="color: hsla(0, 0%, 100%, 1);">The Developer behind PHISHGUARD</p>
+        </main>
+        <footer style="background-color: hsla(222, 47%, 11%, 1); color: hsla(0, 0%, 100%, 1); border-radius: 10px;">
+            <div style="padding-top: 30px; padding-bottom: 30px; border: 1px solid hsla(0, 0%, 100%, 0.1); text-align: center; border-radius: 10px;">
+                <p style="margin: 10px; border-bottom: 1px solid #CCC; padding-bottom: 20px; margin-bottom: 20px;">
+                    PHISHGUARD - A Diploma Project by Ivan Georgiev | TUES, Graduating Class of 2024.
+                </p>
+                <p style="margin: 10px;">
+                    Special thanks to my diploma supervisor for his invaluable guidance, to all the teachers who have helped me along the way, and to my family and friends for their unwavering support. This project wouldn't have been possible without you.
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>

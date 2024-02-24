@@ -1,26 +1,4 @@
 def count_iframes(soup):
-    """
-    Summary: 
-        Count the number of hidden and visible iframe tags in the soup object.\n
-
-    Description: 
-        Create variables to store hidden and visible iframe tags count.\n
-        Find all iframe tags in the soup object.\n
-        For each iframe tag, get the iframe tag style.\n
-        If the iframe tag style contains "display: none" or "visibility: hidden", increment hidden iframe tags count.\n
-        Else, increment visible iframe tags count.\n
-        Return hidden and visible iframe tags count.\n
-
-    Arguments: 
-        soup: The soup object of the website content.
-
-    Returns: 
-        hidden_iframes_count (int): The count of hidden iframe tags.
-        visible_iframes_count (int): The count of visible iframe tags.
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0, 0 is returned.
-    """
     try:
         hidden_iframes_count = 0
         visible_iframes_count = 0

@@ -1,29 +1,16 @@
 # 20
-import re
+from flask import current_app
 
 def detect_right_click_disablement(is_right_click_disabled):
-    """
-    Summary: 
-        Detects if right click is disabled on the webpage.
-
-    Description: 
-        If the is_right_click_disabled is True, 1 is returned.\n
-        If the is_right_click_disabled is False, 0 is returned.\n
-
-    Arguments: 
-        is_right_click_disabled (bool): A boolean value indicating if right click is disabled on the webpage.
-
-    Returns: 
-        (int): Either 0 or 1
-
-    Exceptions: 
-        In case of an exception during the execution of the function, an error message is printed to the console and 0.5 is returned.
-    """
+    legitimate_status = current_app.config["LEGITIMATE_STATUS"]
+    suspicious_status = current_app.config["SUSPICIOUS_STATUS"]
+    phishing_status = current_app.config["PHISHING_STATUS"]
+    
     try:
         if is_right_click_disabled:
-            return 1
+            return phishing_status
         else:
-            return 0
+            return legitimate_status
     except Exception as e:
         print(f"Error in detect_right_click_disablement: {e}")
-        return 0.5
+        return suspicious_status
