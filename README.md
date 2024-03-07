@@ -148,20 +148,20 @@ On the home page, **PHISHGUARD** offers a clear and user-friendly interface for 
   - **Quick Analysis**: This is the fastest mode, offering a brief overview by focusing on the main page and immediate links. It is quicker but may not detect deeper issues that require more extensive scanning.
 - **Analyze the Website**: After entering the URL and selecting the analysis mode, click the `Analyze Now` button to initiate the analysis process. This action triggers **PHISHGUARD** to start examining the website for potential phishing threats.
 #### Home Page Preview
-![PHISHGUARD Home Page Preview](https://github.com/IvanGeorgievProgramming/phishguard/phishguard_screenshots/PHISHGUARD_Home.png)
+![PHISHGUARD Home Page Preview](https://github.com/IvanGeorgievProgramming/phishguard/blob/main/phishguard_screenshots/PHISHGUARD_Home.png)
 ### Result Page
 After initiating the analysis of a website, **PHISHGUARD** will process the inputted data and display the findings on the results page. This page is structured to provide you with actionable insights and further tools for analysis:
 - **Result Message**: At the top of the results page, you will see a clear message indicating the safety status of the analyzed website. This message will tell you whether the website is considered safe, suspicious, or likely to be a phishing threat based on the analysis conducted by **PHISHGUARD**.
 - **Detailed Analysis via Email**: For users who require more information beyond the initial result message, there is an option to receive a detailed report. Below the result message, you'll find an email input box where you can enter your email address. After submitting your email, **PHISHGUARD** will send a comprehensive analysis report detailing the specific phishing indicators found and an explanation of the overall safety assessment.
 - **Secure Website Preview**: Alongside the textual analysis, the results page provides a secure preview of the website. This feature allows you to see a visual representation of the analyzed website without the risk of interacting directly with potential threats. It's a non-interactive snapshot that serves as a visual aid to recall the website you've analyzed, reinforcing the textual information provided by **PHISHGUARD**.
 #### Result Page Preview: Legitimate Website
-![PHISHGUARD Result Page Preview - Legitimate Website](https://github.com/IvanGeorgievProgramming/phishguard/phishguard_screenshots/PHISHGUARD_Result_Legitimate.png)
+![PHISHGUARD Result Page Preview - Legitimate Website](https://github.com/IvanGeorgievProgramming/phishguard/blob/main/phishguard_screenshots/PHISHGUARD_Result_Legitimate.png)
 #### Result Page Preview: Phishing Website
-![PHISHGUARD Result Page Preview - Phishing Website](https://github.com/IvanGeorgievProgramming/phishguard/phishguard_screenshots/PHISHGUARD_Result_Phishing.png)
+![PHISHGUARD Result Page Preview - Phishing Website](https://github.com/IvanGeorgievProgramming/phishguard/blob/main/phishguard_screenshots/PHISHGUARD_Result_Phishing.png)
 #### Detailed Report: Legitimate Website
-![PHISHGUARD Detailed Report - Legitimate Website](https://github.com/IvanGeorgievProgramming/phishguard/phishguard_screenshots/PHISHGUARD_Analysis_Report_Legitimate.png)
+![PHISHGUARD Detailed Report - Legitimate Website](https://github.com/IvanGeorgievProgramming/phishguard/blob/main/phishguard_screenshots/PHISHGUARD_Analysis_Report_Legitimate.png)
 #### Detailed Report: Phishing Website
-![PHISHGUARD Detailed Report - Phishing Website](https://github.com/IvanGeorgievProgramming/phishguard/phishguard_screenshots/PHISHGUARD_Analysis_Report_Legitimate.png)
+![PHISHGUARD Detailed Report - Phishing Website](https://github.com/IvanGeorgievProgramming/phishguard/blob/main/phishguard_screenshots/PHISHGUARD_Analysis_Report_Phishing.png)
 
 ## Model Training Repository
 For those interested in exploring the intricacies of the model's training, including the selection of features, the preprocessing of data, the training process, and the evaluation of the model, I've made the model training repository publicly available. You can access it here:
