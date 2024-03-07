@@ -10,11 +10,12 @@
 
 ### Step 1: Access the Application
 Go to **PHISHGUARD** at:
-[PHISHGUARD Home Page](https://phishguard-cv1g.onrender.com/home)
+<a href="https://phishguard-cv1g.onrender.com/home" target="_blank">PHISHGUARD Home Page</a>
 
 ### Step 2: Obtain Test Links
-Use the daily updated list of phishing websites for testing. This list is available here:
-[Daily Updated List of Phishing Websites](https://github.com/mitchellkrogza/Phishing.Database/blob/master/phishing-links-NEW-today.txt)
+Use the daily updated list of phishing websites for testing. 
+This list is available here:
+<a href="https://github.com/mitchellkrogza/Phishing.Database/blob/master/phishing-links-NEW-today.txt" target="_blank">Daily Updated List of Phishing Websites</a>
 
 This resource provides the latest phishing links for a comprehensive test.
 
