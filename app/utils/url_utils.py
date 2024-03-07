@@ -10,7 +10,7 @@ def generate_route_name(url):
         print(f"Error generating route name: {e}")
         return None
 
-def reconstruct_url(encoded_route_name):
+def reconstruct_route_name(encoded_route_name):
     try:
         decoded_bytes = base64.urlsafe_b64decode(encoded_route_name.encode())
         

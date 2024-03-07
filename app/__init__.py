@@ -2,7 +2,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask
 
 from app.config import Config
-from app.utils.scheduler import remove_expired_routes
+from app.utils.remove_expired_routes import remove_expired_routes
 
 app = Flask(__name__)
 app.config.from_object(Config)

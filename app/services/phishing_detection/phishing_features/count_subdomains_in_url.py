@@ -26,4 +26,4 @@ def count_subdomains_in_url(url):
             return phishing_status
     except Exception as e:
         print(f"Error in count_subdomains_in_url: {e}")
-        return 0.5
+        return suspicious_status
