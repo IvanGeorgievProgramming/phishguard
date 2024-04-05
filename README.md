@@ -3,33 +3,6 @@
 ## Introduction
 **PHISHGUARD** is a project I've developed for my diploma, diving into the potential of machine learning to improve online security. Created using Flask, this application leverages logistic regression - a fundamental machine learning technique - to distinguish phishing sites from legitimate ones. My aim with **PHISHGUARD** is to provide a tool that enhances web navigation safety by identifying potential phishing threats.
 
-## How to Test PHISHGUARD
-
-### Getting Started
-**PHISHGUARD** is designed to enhance online security by identifying phishing websites with high accuracy. To evaluate its detection capabilities, you can follow the instructions below:
-
-### Step 1: Access the Application
-Go to **PHISHGUARD** at:
-[PHISHGUARD Home Page](https://phishguard-cv1g.onrender.com/home)
-
-### Step 2: Obtain Test Links
-Use the daily updated list of phishing websites for testing. 
-This list is available here:
-[Daily Updated List of Phishing Websites](https://github.com/mitchellkrogza/Phishing.Database/blob/master/phishing-links-NEW-today.txt)
-
-This resource provides the latest phishing links for a comprehensive test.
-
-### Step 3: Conduct Tests
-1. Select a link from the updated phishing website list.
-2. Copy and paste this link into the detection field on **PHISHGUARD**'s homepage.
-3. Submit the URL for the analysis process.
-
-### Step 4: Evaluate Results
-After submission, **PHISHGUARD** analyzes the URL based on logistic regression techniques to classify it as a phishing site or legitimate. Review the verdict to gauge the application's precision.
-
-### Important Note
-**PHISHGUARD**'s analysis is based on the latest algorithms and data to assess potential risks and does not guarantee absolute safety or risk. The project checks websites for phishing or suspicious features—practices not typically associated with legitimate websites that aim to gather information securely. However, some legitimate websites might not adhere to these principles and could incorporate features commonly found in phishing attempts, potentially leading to incorrect identification. Users should consider **PHISHGUARD**'s assessments as part of a broader approach to online security and exercise caution, recognizing that the landscape of cyber threats continually evolves.
-
 ## Features
 The **PHISHGUARD** project extends its functionality through the following features, each thoughtfully integrated to support the core objective of enhancing online security through machine learning:
 - **Simple User Interface**: Users can start their analysis by simply entering the URL of the website they're curious about right on the homepage.
